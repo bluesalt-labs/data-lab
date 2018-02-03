@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AppController extends Controller
 {
     /**
      * Create a new controller instance.

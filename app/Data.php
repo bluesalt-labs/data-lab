@@ -21,6 +21,15 @@ class Data extends Model
      * @var array
      */
     protected $hidden = [
-        'type_id', 'user_id'
+        'type_id', 'user_id', 'created_at', 'updated_at',
     ];
+
+
+    public function type() {
+        return $this->belongsTo('App\Type');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }
