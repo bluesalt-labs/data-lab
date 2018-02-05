@@ -18,38 +18,38 @@ use Illuminate\Http\Request;
 //});
 
 
-$router->group(['prefix' => 'v1'], function () use ($router) {
-    $router->get('/', function() use ($router) {
+Route::middleware('auth:api')->prefix('v1')->group(function (){
+    Route::get('/', function() {
         return "<a href='https://github.com/bluesalt-labs/data-lab'>BlueSalt Labs Data Lab API</a> Version 1";
     });
 
-    //$router->group(['middleware' => 'auth'], function () use ($router) {
+    //Route::group(['middleware' => 'auth'], function () use ($router) {
 
     // Data Routes
-    $router->group(['prefix' => 'data'], function () use ($router) {
-        $router->get('/', 'DataController@index');
-        $router->get('{id}', 'DataController@getByID');
-        $router->post('/', 'DataController@create');
-        $router->put('/', 'DataController@update');
-        $router->delete('{id}', 'DataController@delete');
+    Route::group(['prefix' => 'data'], function () {
+        Route::get('/', 'DataController@index');
+        Route::get('{id}', 'DataController@getByID');
+        Route::post('/', 'DataController@create');
+        Route::put('/', 'DataController@update');
+        Route::delete('{id}', 'DataController@delete');
     });
 
     // App Routes
-    $router->group(['prefix' => 'app'], function () use ($router) {
-        $router->get('/', 'AppController@index');
-        $router->get('{id}', 'AppController@getByID');
-        $router->post('/', 'AppController@create');
-        $router->put('/', 'AppController@update');
-        $router->delete('{id}', 'AppController@delete');
+    Route::group(['prefix' => 'app'], function () {
+        Route::get('/', 'AppController@index');
+        Route::get('{id}', 'AppController@getByID');
+        Route::post('/', 'AppController@create');
+        Route::put('/', 'AppController@update');
+        Route::delete('{id}', 'AppController@delete');
     });
 
     // User Routes
-    $router->group(['prefix' => 'user'], function () use ($router) {
-        $router->get('/', 'UserController@index');
-        $router->get('{id}', 'UserController@getByID');
-        $router->post('/', 'UserController@create');
-        $router->put('/', 'UserController@update');
-        $router->delete('{id}', 'UserController@delete');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'UserController@index');
+        Route::get('{id}', 'UserController@getByID');
+        Route::post('/', 'UserController@create');
+        Route::put('/', 'UserController@update');
+        Route::delete('{id}', 'UserController@delete');
     });
 
     //});

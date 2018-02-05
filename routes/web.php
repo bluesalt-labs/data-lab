@@ -11,11 +11,17 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+//$router->get('/', function () use ($router) {
+//    //return $router->app->version();
+//    return "<a href='https://github.com/bluesalt-labs/data-lab'>BlueSalt Labs Data Lab API</a>";
 //});
 
-$router->get('/', function () use ($router) {
-    //return $router->app->version();
-    return "<a href='https://github.com/bluesalt-labs/data-lab'>BlueSalt Labs Data Lab API</a>";
-});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

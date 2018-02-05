@@ -2,12 +2,15 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 //use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements AuthenticatableContract, AuthorizableContract
+
+class User extends Authenticatable
 {
     //use Notifiable;
+    use HasApiTokens;
 
     protected $table = 'users';
 
@@ -28,4 +31,8 @@ class User extends Authenticatable implements AuthenticatableContract, Authoriza
     protected $hidden = [
         'password', 'remember_token', 'created_at', 'updated_at',
     ];
+
+    public function fullName() {
+        return $this->first_name .' '. $this->last_name;
+    }
 }
