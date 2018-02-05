@@ -16,6 +16,14 @@ $router->get('/', function () use ($router) {
     return "<a href='https://github.com/bluesalt-labs/data-lab'>BlueSalt Labs Data Lab API</a>";
 });
 
+//================ Authentication ================//
+
+$router->group(['prefix' => 'oauth2'], function () use ($router) {
+
+});
+
+//================================================//
+
 
 //==================== API v1 ====================//
 

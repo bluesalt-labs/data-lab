@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
     }
 
     public function create(Request $request) {
-
+        //Hash::make($request->newPassword);
     }
 
     public function update(Request $request, $id) {

@@ -4,18 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class App extends Model
+class UserSession extends Model
 {
-    protected $table = 'apps';
+
+    protected $table = 'user_sessions';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'app_name',
-    ];
+    protected $fillable = [];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -23,6 +22,6 @@ class App extends Model
      * @var array
      */
     protected $hidden = [
-        'app_token', 'created_at', 'updated_at',
+        'user_id', 'app_id', 'session_token', 'created_at', 'expires_at',
     ];
 }

@@ -15,8 +15,11 @@ class CreateAppsTable extends Migration
     {
         Schema::create('apps', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('app_name');
-            $table->string('app_token')->unique();
+            $table->string('key');
+            $table->string('name');
+            $table->string('domain');
+            $table->string('logo');
+            //$table->string('token')->unique();
             $table->timestamps();
         });
     }

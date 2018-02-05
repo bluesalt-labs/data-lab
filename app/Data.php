@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
+
+    protected $table = 'data';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,8 +28,8 @@ class Data extends Model
     ];
 
 
-    public function type() {
-        return $this->belongsTo('App\Type');
+    public function app() {
+        return $this->belongsTo('App\App');
     }
 
     public function user() {
