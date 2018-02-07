@@ -14,7 +14,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 //$router->get('/', function () use ($router) {
@@ -24,4 +24,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('home');
+
+Route::group(['prefix' => 'docs'], function () {
+    Route::get('/', 'DocsController@index')->name('docs_home');
+});
+
+
+Route::prefix('admin')->group(function() {
+
+});

@@ -18,6 +18,10 @@ class Data extends Model
         'data'
     ];
 
+    protected $casts = [
+        'data' => 'array',
+    ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *

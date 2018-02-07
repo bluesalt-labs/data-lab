@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -52,6 +53,7 @@ class RegisterController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            //'role' => 'required:exists:roles,id', // validating role
         ]);
     }
 
@@ -61,13 +63,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
+    protected function create(array $data) {
+        $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        if(array_key_exists('role', $data)) {
+            $user->roles()->attach($data['role']);
+        } else {
+            $user->roles()->attach(Role::getDefaultID());
+        }
+
+        return $user;
+    }
+
+    public function showRegistrationForm() {
+        $roles = Role::orderBy('name')->pluck('name', 'id');
+        return view('auth.register', compact('roles'));
     }
 }
