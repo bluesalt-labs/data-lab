@@ -7,3 +7,145 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Font Awesome
+@import "~font-awesome/scss/font-awesome";
+
+
+html, body, #page-container {
+  box-sizing: border-box;
+  position: relative;
+  width: 100vw;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  min-heiht: 100%;
+}
+
+#page-container.sidebar-active {
+  #main-sidebar {
+    left: 0;
+    @include box-shadow(4px 0 8px -4px rgba(0, 0, 0, 0.75));
+
+    #btn-nav-toggle > i:before { content: "\f191"; }
+  }
+
+  #page-content { margin-left: $sidebar-width; }
+}
+
+#main-navbar {
+  z-index: 9999;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: $navbar-height;
+  padding: 0 15px;
+  margin: 0;
+  background: $navbar-default-bg;
+
+  #btn-nav-toggle, .navbar-brand {
+    display: inline-block;
+    color: $brand-primary;
+    background:  $navbar-default-bg;
+    vertical-align: middle;
+    height: $navbar-height;
+    margin: 0 5px;
+  }
+
+  #btn-nav-toggle {
+    border: none;
+    outline: none;
+    padding: 0;
+    width: $navbar-height;
+    font-size: $navbar-height;
+    position: relative;
+    @include border-radius(3px);
+    @include transition(all 3px);
+
+    i {
+      position: absolute;
+      top: 0; left: 0;
+      text-align: center;
+      width: $navbar-height;
+      height: $navbar-height;
+      font-size: $navbar-height;
+    }
+
+    i:before { content: "\f152"; }
+  }
+}
+
+#main-sidebar {
+  z-index: 8888;
+  position: fixed;
+  left: -$sidebar-width;
+  width: $sidebar-width;
+  height: 100%;
+  padding: $navbar-height 0 0 0;
+  margin: 0;
+  background: $sidebar-bg;
+  @include box-shadow(0 0 0 0 rgba(0,0,0,0.75));
+  @include transition(left 150ms);
+
+  #sidebar-links, #sidebar-links ul {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: $sidebar-width;
+    height: 100%;
+  }
+
+  #sidebar-links {
+    border-right: 1px solid $sidebar-border;
+    /*padding-top: 15px;*/
+
+    li {
+      padding: 0;
+      border-bottom: 1px solid $sidebar-border;
+      display: block;
+      height: $navbar-height;
+
+      a, span {
+        display: block;
+        padding: 5px 15px;
+        line-height: $navbar-height - 5px;
+        color: $brand-primary;
+        width: 100%;
+        height: 100%;
+      }
+      a:active, a:hover {
+        background: $sidebar-bg-active;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+
+    li:first-child {
+      border-top: 1px solid $sidebar-border;
+    }
+
+    li.active { background: $sidebar-bg-active; }
+
+    // sub-links
+    ul > li > a { padding-left: 45px; }
+  }
+}
+
+
+#page-content {
+  padding-top: $navbar-height + ($navbar-height / 2);
+  @include calc(min-height, 100% - #{$navbar-height});
+  @include transition(margin 150ms);
+}
+
+#page-footer {
+  background: $navbar-default-bg;
+  min-height: $navbar-height;
+  bottom: 0; left: 0;
+  width: 100%;
+  padding: 5px 15px;
+  margin: 0;
+}

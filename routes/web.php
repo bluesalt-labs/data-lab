@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin', 'AdminController@index')->name('home');
+
 
 Route::group(['prefix' => 'docs'], function () {
     Route::get('/', 'DocsController@index')->name('docs_home');
@@ -32,5 +32,53 @@ Route::group(['prefix' => 'docs'], function () {
 
 
 Route::prefix('admin')->group(function() {
+    Route::get('/', 'AdminController@index')->name('dashboard');
 
+    Route::prefix('users')->group(function() {
+        Route::get('/', 'AdminController@userList')->name('user_list');
+
+        Route::get('new', 'AdminController@userNew')->name('user_new');
+        Route::post('create', 'AdminController@userCreate')->name('user_create');
+
+        Route::get('view/{id}', 'AdminController@userSingle')->name('user_view');
+        Route::post('update/{id}', 'AdminController@userUpdate')->name('user_update');
+
+        Route::delete('delete/{id}', 'AdminController@userDelete')->name('user_delete');
+    });
+
+    Route::prefix('apps')->group(function() {
+        Route::get('/', 'AdminController@appList')->name('app_list');
+        
+        Route::get('new', 'AdminController@appNew')->name('app_new');
+        Route::post('create', 'AdminController@appCreate')->name('app_create');
+        
+        Route::get('view/{id}', 'AdminController@appSingle')->name('app_view');
+        Route::post('update/{id}', 'AdminController@appUpdate')->name('app_update');
+        
+        Route::delete('delete/{id}', 'AdminController@appDelete')->name('app_delete');
+    });
+
+    Route::prefix('data')->group(function() {
+        Route::get('/', 'AdminController@dataList')->name('data_list');
+
+        Route::get('new', 'AdminController@dataNew')->name('data_new');
+        Route::post('create', 'AdminController@dataCreate')->name('data_create');
+
+        Route::get('view/{id}', 'AdminController@dataSingle')->name('data_view');
+        Route::post('update/{id}', 'AdminController@dataUpdate')->name('data_update');
+
+        Route::delete('delete/{id}', 'AdminController@dataDelete')->name('data_delete');
+    });
+
+    Route::prefix('roles')->group(function() {
+        Route::get('/', 'AdminController@roleList')->name('role_list');
+
+        Route::get('new', 'AdminController@roleNew')->name('role_new');
+        Route::post('create', 'AdminController@roleCreate')->name('role_create');
+
+        Route::get('view/{id}', 'AdminController@roleSingle')->name('role_view');
+        Route::post('update/{id}', 'AdminController@roleUpdate')->name('role_update');
+
+        Route::delete('delete/{id}', 'AdminController@roleDelete')->name('role_delete');
+    });
 });

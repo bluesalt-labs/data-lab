@@ -25,4 +25,16 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function userList() {
+        return view('admin.users.list');
+    }
+
+    public function userSingle() {
+        return view('admin.users.single');
+    }
+
+    public function userDelete() {
+        return view('admin.users.single');
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Role;
+use App\Models\Role;
 
 class RolesSeeder extends Seeder
 {
@@ -16,9 +16,25 @@ class RolesSeeder extends Seeder
             'name'          => 'System Administrator',
             'slug'          =>  'system_admin',
             'permissions'   => array(
-                'data.*'    => true,
-                'user.*'    => true,
-                'role.*'    => true,
+                'users-create'  => true,
+                'users-read'    => true,
+                'users-update'  => true,
+                'users-delete'  => true,
+
+                'role-create'   => true,
+                'role-read'     => true,
+                'role-update'   => true,
+                'role-delete'   => true,
+
+                'app-create'    => true,
+                'app-read'      => true,
+                'app-update'    => true,
+                'app-delete'    => true,
+
+                'data-create'   => true,
+                'data-read'     => true,
+                'data-update'   => true,
+                'data-delete'   => true,
             ),
         ]);
 
@@ -26,7 +42,15 @@ class RolesSeeder extends Seeder
             'name'          => 'User',
             'slug'          => 'user',
             'permissions'   => array(
-                'data.*'    => true,
+                'app-create'   => true,
+                'app-read'     => true,
+                'app-update'   => true,
+                'app-delete'   => true,
+
+                'data-create'   => true,
+                'data-read'     => true,
+                'data-update'   => true,
+                'data-delete'   => true,
             ),
         ]);
 
@@ -34,18 +58,15 @@ class RolesSeeder extends Seeder
             'name'          => 'New Account',
             'slug'          => 'new_account',
             'permissions'   => array(
-                'data.index'    => true,
-                'data.getByID'  => true,
+                'app-read'     => true,
+                'data-read'    => true,
             ),
         ]);
 
         Role::create([
             'name'          => 'Guest',
             'slug'          => 'guest',
-            'permissions'   => array(
-                'data.index'    => true,
-                'data.getByID'  => true,
-            ),
+            'permissions'   => array(),
         ]);
     }
 }

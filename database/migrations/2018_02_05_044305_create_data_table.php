@@ -17,6 +17,7 @@ class CreateDataTable extends Migration
             $table->increments('id');
             $table->integer('app_key');
             $table->integer('user_id');
+            $table->boolean('public')->default(false);
             $table->jsonb('data');
             $table->timestamps();
             $table->softDeletes();

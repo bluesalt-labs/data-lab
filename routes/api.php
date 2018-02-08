@@ -25,6 +25,7 @@ Route::middleware('auth:api')->prefix('v1')->group(function (){
 
     //Route::group(['middleware' => 'auth'], function () use ($router) {
 
+
     // Data Routes
     Route::group(['prefix' => 'data'], function () {
         Route::get('/', 'DataController@index');
