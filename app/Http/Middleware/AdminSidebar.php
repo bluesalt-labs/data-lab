@@ -20,6 +20,7 @@ class AdminSidebar
         /** @var User $user */
         $user = $request->user();
 
+
         if( $user->hasAccess(['dashboard']) )   { $routes['dashboard'] = 'Dashboard';   }
         if( $user->hasAccess(['app-read'])  )   { $routes['app_list']   = 'Apps';       }
         if( $user->hasAccess(['data-read']) )   { $routes['data_list']  = 'Data';       }

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('page-title', 'Data {app?} {id?}')
+@section('page-title', 'Role {name}')
 
 @section('page-content')
 

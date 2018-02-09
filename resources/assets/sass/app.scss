@@ -87,7 +87,7 @@ html, body, #page-container {
   margin: 0;
   background: $sidebar-bg;
   @include box-shadow(0 0 0 0 rgba(0,0,0,0.75));
-  @include transition(left 150ms);
+  @include transition(left $sidebar-transition);
 
   #sidebar-links, #sidebar-links ul {
     list-style: none;
@@ -136,9 +136,10 @@ html, body, #page-container {
 
 
 #page-content {
+  margin-left: 0px;
   padding-top: $navbar-height + ($navbar-height / 2);
   @include calc(min-height, 100% - #{$navbar-height});
-  @include transition(margin 150ms);
+  @include transition(margin $sidebar-transition);
 }
 
 #page-footer {

@@ -47,7 +47,7 @@
         <header id="main-sidebar">
             <ul id="sidebar-links">
             @foreach(Request::get('sidebarRoutes') as $routeName => $routeTitle)
-            @if(Route::currentRouteName() === $routeName)
+            @if(Route::currentRouteName() === $routeName) <!-- todo: fix this for sub-routes -->
                 <li class="active"><span>{{ $routeTitle }}</span></li>
             @else
                 <li><a href="{{ route($routeName) }}">{{ $routeTitle }}</a></li>
@@ -55,7 +55,7 @@
             @endforeach
             </ul>
         </header>
-        <div class="container-fluid" id="page-content">
+        <div id="page-content">
             @yield('page-content')
         </div><!-- #page-content -->
 

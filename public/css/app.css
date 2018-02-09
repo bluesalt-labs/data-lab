@@ -11547,6 +11547,7 @@ body,
 }
 
 #page-content {
+  margin-left: 0px;
   padding-top: 60px;
   min-height: calc(100% - 40px);
   -webkit-transition: margin 150ms;

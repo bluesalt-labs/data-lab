@@ -53,7 +53,7 @@ Route::prefix('admin')->middleware('sidebar.admin')->group(function() {
         Route::post('create', 'AdminController@appCreate')->name('app_create');
         
         Route::get('view/{id}', 'AdminController@appSingle')->name('app_view');
-        Route::post('update/{id}', 'AdminController@appUpdate')->name('app_update');
+        Route::post('update', 'AdminController@appUpdate')->name('app_update');
         
         Route::delete('delete/{id}', 'AdminController@appDelete')->name('app_delete');
     });
