@@ -16,6 +16,8 @@ class RolesSeeder extends Seeder
             'name'          => 'System Administrator',
             'slug'          =>  'system_admin',
             'permissions'   => array(
+                'dashboard'     => true,
+
                 'users-create'  => true,
                 'users-read'    => true,
                 'users-update'  => true,
@@ -42,6 +44,8 @@ class RolesSeeder extends Seeder
             'name'          => 'User',
             'slug'          => 'user',
             'permissions'   => array(
+                'dashboard'     => true,
+
                 'app-create'   => true,
                 'app-read'     => true,
                 'app-update'   => true,
@@ -58,6 +62,8 @@ class RolesSeeder extends Seeder
             'name'          => 'New Account',
             'slug'          => 'new_account',
             'permissions'   => array(
+                'dashboard'     => true,
+
                 'app-read'     => true,
                 'data-read'    => true,
             ),

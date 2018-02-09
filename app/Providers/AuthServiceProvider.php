@@ -31,10 +31,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //$this->registerAppPolicies();
-        //$this->registerDataPolicies();
-        //$this->registerUserPolicies();
-        //$this->registerRolePolicies();
+        $this->registerAppPolicies();
+        $this->registerDataPolicies();
+        $this->registerUserPolicies();
+        $this->registerRolePolicies();
 
         Passport::routes();
     }

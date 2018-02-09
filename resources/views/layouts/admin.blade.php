@@ -46,19 +46,15 @@
         <!-- Admin Sidebar -->
         <header id="main-sidebar">
             <ul id="sidebar-links">
-                <!-- todo
-                @ foreach()
-                <li< ?=($data['active'] ? ' class="active"' : '')?>>
-                    <a href
-                </li>
-                -->
-                <li class="active"><span>Dashboard</span></li>
-                <li><a href="#">Test 1</a></li>
-                <li><a href="#">Test 2</a></li>
-                <li><a href="#">Test 3</a></li>
+            @foreach(Request::get('sidebarRoutes') as $routeName => $routeTitle)
+            @if(Route::currentRouteName() === $routeName)
+                <li class="active"><span>{{ $routeTitle }}</span></li>
+            @else
+                <li><a href="{{ route($routeName) }}">{{ $routeTitle }}</a></li>
+            @endif
+            @endforeach
             </ul>
         </header>
-
         <div class="container-fluid" id="page-content">
             @yield('page-content')
         </div><!-- #page-content -->

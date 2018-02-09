@@ -31,7 +31,7 @@ Route::group(['prefix' => 'docs'], function () {
 });
 
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware('sidebar.admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('dashboard');
 
     Route::prefix('users')->group(function() {
