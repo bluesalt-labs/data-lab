@@ -18,10 +18,10 @@ class RolesSeeder extends Seeder
             'permissions'   => array(
                 'dashboard'     => true,
 
-                'users-create'  => true,
-                'users-read'    => true,
-                'users-update'  => true,
-                'users-delete'  => true,
+                'user-create'  => true,
+                'user-read'    => true,
+                'user-update'  => true,
+                'user-delete'  => true,
 
                 'role-create'   => true,
                 'role-read'     => true,

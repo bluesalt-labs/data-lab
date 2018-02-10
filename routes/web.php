@@ -31,54 +31,56 @@ Route::group(['prefix' => 'docs'], function () {
 });
 
 
-Route::prefix('admin')->middleware('sidebar.admin')->group(function() {
-    Route::get('/', 'AdminController@index')->name('dashboard');
+Route::prefix('admin')->middleware('sidebar.admin')->namespace('Admin')->group(function() {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
 
+
+    // todo: can I loop through slugs and create these?
     Route::prefix('users')->group(function() {
-        Route::get('/', 'AdminController@userList')->name('user_list');
+        Route::get('/', 'UserController@list')->name('user_list');
 
-        Route::get('new', 'AdminController@userNew')->name('user_new');
-        Route::post('create', 'AdminController@userCreate')->name('user_create');
+        Route::get('new', 'UserController@new')->name('user_new');
+        Route::post('create', 'UserController@create')->name('user_create');
 
-        Route::get('view/{id}', 'AdminController@userSingle')->name('user_view');
-        Route::post('update/{id}', 'AdminController@userUpdate')->name('user_update');
+        Route::get('view/{id}', 'UserController@single')->name('user_view');
+        Route::post('update/{id}', 'UserController@update')->name('user_update');
 
-        Route::delete('delete/{id}', 'AdminController@userDelete')->name('user_delete');
+        Route::delete('delete', 'UserController@delete')->name('user_delete');
     });
 
     Route::prefix('apps')->group(function() {
-        Route::get('/', 'AdminController@appList')->name('app_list');
+        Route::get('/', 'AppController@list')->name('app_list');
         
-        Route::get('new', 'AdminController@appNew')->name('app_new');
-        Route::post('create', 'AdminController@appCreate')->name('app_create');
+        Route::get('new', 'AppController@new')->name('app_new');
+        Route::post('create', 'AppController@create')->name('app_create');
         
-        Route::get('view/{id}', 'AdminController@appSingle')->name('app_view');
-        Route::post('update', 'AdminController@appUpdate')->name('app_update');
+        Route::get('view/{id}', 'AppController@single')->name('app_view');
+        Route::post('update', 'AppController@update')->name('app_update');
         
-        Route::delete('delete/{id}', 'AdminController@appDelete')->name('app_delete');
+        Route::delete('delete', 'AppController@delete')->name('app_delete');
     });
 
     Route::prefix('data')->group(function() {
-        Route::get('/', 'AdminController@dataList')->name('data_list');
+        Route::get('/', 'DataController@dataList')->name('data_list');
 
-        Route::get('new', 'AdminController@dataNew')->name('data_new');
-        Route::post('create', 'AdminController@dataCreate')->name('data_create');
+        Route::get('new', 'DataController@dataNew')->name('data_new');
+        Route::post('create', 'DataController@dataCreate')->name('data_create');
 
-        Route::get('view/{id}', 'AdminController@dataSingle')->name('data_view');
-        Route::post('update/{id}', 'AdminController@dataUpdate')->name('data_update');
+        Route::get('view/{id}', 'DataController@dataSingle')->name('data_view');
+        Route::post('update/{id}', 'DataController@dataUpdate')->name('data_update');
 
-        Route::delete('delete/{id}', 'AdminController@dataDelete')->name('data_delete');
+        Route::delete('delete', 'DataController@dataDelete')->name('data_delete');
     });
 
     Route::prefix('roles')->group(function() {
-        Route::get('/', 'AdminController@roleList')->name('role_list');
+        Route::get('/', 'RoleController@list')->name('role_list');
 
-        Route::get('new', 'AdminController@roleNew')->name('role_new');
-        Route::post('create', 'AdminController@roleCreate')->name('role_create');
+        Route::get('new', 'RoleController@new')->name('role_new');
+        Route::post('create', 'RoleController@create')->name('role_create');
 
-        Route::get('view/{id}', 'AdminController@roleSingle')->name('role_view');
-        Route::post('update/{id}', 'AdminController@roleUpdate')->name('role_update');
+        Route::get('view/{id}', 'RoleController@single')->name('role_view');
+        Route::post('update/{id}', 'RoleController@update')->name('role_update');
 
-        Route::delete('delete/{id}', 'AdminController@roleDelete')->name('role_delete');
+        Route::delete('delete', 'RoleController@delete')->name('role_delete');
     });
 });

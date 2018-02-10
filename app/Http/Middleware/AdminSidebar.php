@@ -25,6 +25,7 @@ class AdminSidebar
         if( $user->hasAccess(['app-read'])  )   { $routes['app_list']   = 'Apps';       }
         if( $user->hasAccess(['data-read']) )   { $routes['data_list']  = 'Data';       }
         if( $user->hasAccess(['role-read']) )   { $routes['role_list']  = 'Roles';      }
+        if( $user->hasAccess(['user-read']) )   { $routes['user_list']  = 'Users';      }
 
         return $routes;
     }
