@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Data;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\AdminController;
 
 class DataController extends AdminController
 {
@@ -59,4 +59,11 @@ class DataController extends AdminController
         return $view;
     }
     */
+
+    public static function getTableHeaders() {
+        return array(
+            'id'            => 'ID',
+            'created_at'    => 'Created',
+        );
+    }
 }

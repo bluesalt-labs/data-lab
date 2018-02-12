@@ -31,9 +31,14 @@ class AdminController extends Controller
     // GET /admin/{model_slug}
     public function list(Request $request) {
         $modelClass = '\App\Models\\'.ucfirst($this->model_slug);
+        $controllerClass = '\App\Http\Controllers\Admin\\'.ucfirst($this->model_slug).'Controller';
+
+        $headers = $controllerClass::getTableHeaders();
+        $data = $modelClass::all();
 
         return view('admin.'.$this->model_slug.'.list')
-            ->with( $this->model_slug.'s', $modelClass::all() );
+            ->with('headers', $headers)
+            ->with('data', $data);
     }
 
     // GET /admin/{model_slug}/new
@@ -56,5 +61,17 @@ class AdminController extends Controller
     // DELETE /admin/{model_slug}/delete
     public function delete(Request $request) {
         //return redirect('');
+    }
+
+    /**
+     * @return array
+     * @description Headers for the table in a child controller's list view.
+     */
+    public static function getTableHeaders() {
+        return array(
+            'id'            => 'ID',
+            'name'          => 'Name',
+            'created_at'    => 'Created',
+        );
     }
 }

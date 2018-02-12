@@ -35,8 +35,27 @@ Route::prefix('admin')->middleware('sidebar.admin')->namespace('Admin')->group(f
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
 
+/*
     // todo: can I loop through slugs and create these?
-    Route::prefix('users')->group(function() {
+    $modelSlugs = array( 'user', 'app', 'data', 'role' );
+
+    foreach($modelSlugs as $slug) {
+        Route::prefix($slug)->group(function($router) {
+            //var_dump( $router ); die;
+            route::get('/', ucfirst($slug).'Controller@list')->name($slug.'_list');
+
+            route::get('new', ucfirst($slug).'Controller@new')->name($slug.'_new');
+            route::post('create', ucfirst($slug).'Controller@create')->name($slug.'_create');
+
+            route::get('view/{id}', ucfirst($slug).'Controller@view')->name($slug.'_view');
+            route::post('update', ucfirst($slug).'Controller@update')->name($slug.'_update');
+
+            route::delete('delete', ucfirst($slug).'Controller@delete')->name($slug.'_delete');
+        })->with($slug);
+    }
+*/
+
+    Route::prefix('user')->group(function() {
         Route::get('/', 'UserController@list')->name('user_list');
 
         Route::get('new', 'UserController@new')->name('user_new');
@@ -48,7 +67,7 @@ Route::prefix('admin')->middleware('sidebar.admin')->namespace('Admin')->group(f
         Route::delete('delete', 'UserController@delete')->name('user_delete');
     });
 
-    Route::prefix('apps')->group(function() {
+    Route::prefix('app')->group(function() {
         Route::get('/', 'AppController@list')->name('app_list');
         
         Route::get('new', 'AppController@new')->name('app_new');
@@ -61,18 +80,18 @@ Route::prefix('admin')->middleware('sidebar.admin')->namespace('Admin')->group(f
     });
 
     Route::prefix('data')->group(function() {
-        Route::get('/', 'DataController@dataList')->name('data_list');
+        Route::get('/', 'DataController@list')->name('data_list');
 
-        Route::get('new', 'DataController@dataNew')->name('data_new');
-        Route::post('create', 'DataController@dataCreate')->name('data_create');
+        Route::get('new', 'DataController@new')->name('data_new');
+        Route::post('create', 'DataController@create')->name('data_create');
 
-        Route::get('view/{id}', 'DataController@dataSingle')->name('data_view');
-        Route::post('update/{id}', 'DataController@dataUpdate')->name('data_update');
+        Route::get('view/{id}', 'DataController@single')->name('data_view');
+        Route::post('update/{id}', 'DataController@update')->name('data_update');
 
-        Route::delete('delete', 'DataController@dataDelete')->name('data_delete');
+        Route::delete('delete', 'DataController@delete')->name('data_delete');
     });
 
-    Route::prefix('roles')->group(function() {
+    Route::prefix('role')->group(function() {
         Route::get('/', 'RoleController@list')->name('role_list');
 
         Route::get('new', 'RoleController@new')->name('role_new');

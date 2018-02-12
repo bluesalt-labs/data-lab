@@ -3,9 +3,8 @@
 @section('page-title', 'Roles')
 
 @section('page-content')
-@if($roles)
-<pre><code>
-{{ json_encode($roles, JSON_PRETTY_PRINT) }}
-</code></pre>
-@endif
+    @component('admin.layouts.table')
+        @slot('headers', $headers)
+        @slot('data', $data)
+    @endcomponent
 @endsection

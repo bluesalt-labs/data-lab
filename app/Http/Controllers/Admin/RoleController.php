@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\AdminController;
 
 class RoleController extends AdminController
 {
@@ -60,4 +59,12 @@ class RoleController extends AdminController
         return $view;
     }
     */
+
+    public static function getTableHeaders() {
+        return array(
+            'id'            => 'ID',
+            'name'          => 'Name',
+            'created_at'    => 'Created',
+        );
+    }
 }

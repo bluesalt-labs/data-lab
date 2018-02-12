@@ -1,9 +1,8 @@
 <?php
 
-namespace users\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\AdminController;
 
 class UserController extends AdminController
 {
@@ -60,5 +59,15 @@ class UserController extends AdminController
         return $view;
     }
     */
+
+    public static function getTableHeaders() {
+        return array(
+            'id'            => 'ID',
+            'email'         => 'Email Address',
+            'first_name'    => 'First Name',
+            'last_name'    => 'Last Name',
+            'created_at'    => 'Created',
+        );
+    }
 }
 

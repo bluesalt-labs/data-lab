@@ -59,4 +59,12 @@ class AppController extends AdminController
         return $view;
     }
     */
+
+    public static function getTableHeaders() {
+        return array(
+            'id'            => 'ID',
+            'name'          => 'Name',
+            'created_at'    => 'Created',
+        );
+    }
 }
