@@ -55,13 +55,15 @@
             @endforeach
             </ul>
         </header>
+
+        <!-- Page Content -->
         <div id="page-content">
             @yield('page-content')
         </div><!-- #page-content -->
 
         <footer id="page-footer">
-
-        </footer>
+            @yield('page-footer')
+        </footer><!-- #page-footer -->
     </div>
 @endsection
 

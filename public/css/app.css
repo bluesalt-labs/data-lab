@@ -3994,7 +3994,7 @@ select[multiple].input-lg,
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #ffffff;
+  color: #3c3c3c;
   text-decoration: none;
 }
 
@@ -4022,20 +4022,20 @@ fieldset[disabled] a.btn {
 }
 
 .btn-default {
-  color: #ffffff;
+  color: #3c3c3c;
   background-color: #fff;
   border-color: #ccc;
 }
 
 .btn-default:focus,
 .btn-default.focus {
-  color: #ffffff;
+  color: #3c3c3c;
   background-color: #e6e5e5;
   border-color: #8c8c8c;
 }
 
 .btn-default:hover {
-  color: #ffffff;
+  color: #3c3c3c;
   background-color: #e6e5e5;
   border-color: #adadad;
 }
@@ -4043,7 +4043,7 @@ fieldset[disabled] a.btn {
 .btn-default:active,
 .btn-default.active,
 .open > .btn-default.dropdown-toggle {
-  color: #ffffff;
+  color: #3c3c3c;
   background-color: #e6e5e5;
   border-color: #adadad;
 }
@@ -4057,7 +4057,7 @@ fieldset[disabled] a.btn {
 .open > .btn-default.dropdown-toggle:hover,
 .open > .btn-default.dropdown-toggle:focus,
 .open > .btn-default.dropdown-toggle.focus {
-  color: #ffffff;
+  color: #3c3c3c;
   background-color: #d4d4d4;
   border-color: #8c8c8c;
 }
@@ -4083,34 +4083,34 @@ fieldset[disabled] .btn-default.focus {
 
 .btn-default .badge {
   color: #fff;
-  background-color: #ffffff;
+  background-color: #3c3c3c;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #fefefe;
-  border-color: #f1f1f1;
+  background-color: #3c3c3c;
+  border-color: #2f2f2f;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color: #e5e4e4;
-  border-color: #b2b1b1;
+  background-color: #232222;
+  border-color: black;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #e5e4e4;
-  border-color: lightgray;
+  background-color: #232222;
+  border-color: #111111;
 }
 
 .btn-primary:active,
 .btn-primary.active,
 .open > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #e5e4e4;
-  border-color: lightgray;
+  background-color: #232222;
+  border-color: #111111;
 }
 
 .btn-primary:active:hover,
@@ -4123,8 +4123,8 @@ fieldset[disabled] .btn-default.focus {
 .open > .btn-primary.dropdown-toggle:focus,
 .open > .btn-primary.dropdown-toggle.focus {
   color: #fff;
-  background-color: lightgray;
-  border-color: #b2b1b1;
+  background-color: #111111;
+  border-color: black;
 }
 
 .btn-primary:active,
@@ -4142,12 +4142,12 @@ fieldset[disabled] .btn-default.focus {
 fieldset[disabled] .btn-primary:hover,
 fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary.focus {
-  background-color: #fefefe;
-  border-color: #f1f1f1;
+  background-color: #3c3c3c;
+  border-color: #2f2f2f;
 }
 
 .btn-primary .badge {
-  color: #fefefe;
+  color: #3c3c3c;
   background-color: #fff;
 }
 
@@ -11564,4 +11564,10 @@ body,
   padding: 5px 15px;
   margin: 0;
 }
+
+input {
+  color: #000000;
+}
+
+/* todo this should be in _variables */
 

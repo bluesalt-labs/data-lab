@@ -57,49 +57,37 @@ Route::prefix('admin')->middleware('sidebar.admin')->namespace('Admin')->group(f
 
     Route::prefix('user')->group(function() {
         Route::get('/', 'UserController@list')->name('user_list');
-
+        Route::get('{id}', 'UserController@single')->name('user_view');
         Route::get('new', 'UserController@new')->name('user_new');
         Route::post('create', 'UserController@create')->name('user_create');
-
-        Route::get('view/{id}', 'UserController@single')->name('user_view');
-        Route::post('update/{id}', 'UserController@update')->name('user_update');
-
+        Route::post('update', 'UserController@update')->name('user_update');
         Route::delete('delete', 'UserController@delete')->name('user_delete');
     });
 
     Route::prefix('app')->group(function() {
         Route::get('/', 'AppController@list')->name('app_list');
-        
+        Route::get('{id}', 'AppController@single')->name('app_view');
         Route::get('new', 'AppController@new')->name('app_new');
         Route::post('create', 'AppController@create')->name('app_create');
-        
-        Route::get('view/{id}', 'AppController@single')->name('app_view');
         Route::post('update', 'AppController@update')->name('app_update');
-        
         Route::delete('delete', 'AppController@delete')->name('app_delete');
     });
 
     Route::prefix('data')->group(function() {
         Route::get('/', 'DataController@list')->name('data_list');
-
+        Route::get('{id}', 'DataController@single')->name('data_view');
         Route::get('new', 'DataController@new')->name('data_new');
         Route::post('create', 'DataController@create')->name('data_create');
-
-        Route::get('view/{id}', 'DataController@single')->name('data_view');
-        Route::post('update/{id}', 'DataController@update')->name('data_update');
-
+        Route::post('update', 'DataController@update')->name('data_update');
         Route::delete('delete', 'DataController@delete')->name('data_delete');
     });
 
     Route::prefix('role')->group(function() {
         Route::get('/', 'RoleController@list')->name('role_list');
-
+        Route::get('{id}', 'RoleController@single')->name('role_view');
         Route::get('new', 'RoleController@new')->name('role_new');
         Route::post('create', 'RoleController@create')->name('role_create');
-
-        Route::get('view/{id}', 'RoleController@single')->name('role_view');
-        Route::post('update/{id}', 'RoleController@update')->name('role_update');
-
+        Route::post('update', 'RoleController@update')->name('role_update');
         Route::delete('delete', 'RoleController@delete')->name('role_delete');
     });
 });

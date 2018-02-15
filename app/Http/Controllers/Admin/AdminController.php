@@ -2,76 +2,139 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    protected $model_slug;
+    protected $modelSlug;
+    protected $modelClass;
+    //protected $controllerClass;
+    protected $config;
 
     /**
      * AdminController constructor.
-     * @param string|null $model_slug
+     * @param string|null $modelSlug
      */
-    public function __construct($model_slug = null) {
+    public function __construct($modelSlug = null) {
         $this->middleware('auth');
 
-        $this->model_slug = strtolower(trim($model_slug));
+        $this->modelSlug = strtolower(trim($modelSlug));
+        $this->modelClass = '\App\Models\\'.ucfirst($this->modelSlug);
+        //$this->controllerClass = '\App\Http\Controllers\Admin\\'.ucfirst($this->modelSlug).'Controller';
+        $this->config = $this->getConfig();
 
         // Gate Middleware Definitions
-        if($this->model_slug) {
-            $this->middleware('can:'.$this->model_slug.'-create')->only(['new', 'create']);
-            $this->middleware('can:'.$this->model_slug.'-read')->only(['list', 'single']);
-            $this->middleware('can:'.$this->model_slug.'-update')->only('update');
-            $this->middleware('can:'.$this->model_slug.'-delete')->only('delete');
+        if($this->modelSlug) {
+            $this->middleware('can:'.$this->modelSlug.'-create')->only(['new', 'create']);
+            $this->middleware('can:'.$this->modelSlug.'-read')->only(['list', 'single']);
+            $this->middleware('can:'.$this->modelSlug.'-update')->only('update');
+            $this->middleware('can:'.$this->modelSlug.'-delete')->only('delete');
         }
     }
 
-    // GET /admin/{model_slug}
+    private function getConfig() {
+        return [
+            'listHeaders'   => [
+                'id'            => 'ID',
+                'name'          => 'Name',
+                'created_at'    => 'Created',
+            ],
+            'editButton'    => [
+                'enabled'       => true,
+                'content'       => 'Edit',
+                'class'         => 'btn btn-info',
+            ],
+        ];
+    }
+
+    // GET /admin/{modelSlug}
     public function list(Request $request) {
-        $modelClass = '\App\Models\\'.ucfirst($this->model_slug);
-        $controllerClass = '\App\Http\Controllers\Admin\\'.ucfirst($this->model_slug).'Controller';
+        $data = $this->modelClass::all();
 
-        $headers = $controllerClass::getTableHeaders();
-        $data = $modelClass::all();
-
-        return view('admin.'.$this->model_slug.'.list')
-            ->with('headers', $headers)
+        //return view('admin.'.$this->modelSlug.'.list')
+        return view('admin.layouts.list')
+            ->with('modelSlug', $this->modelSlug)
+            ->with('headers', $this->config['listHeaders'])
+            ->with('editButton', $this->config['editButton'])
             ->with('data', $data);
     }
 
-    // GET /admin/{model_slug}/new
-    public function new(Request $request) {
-        return view('admin.'.$this->model_slug.'.new');
+    // GET /admin/{modelSlug}/{id}
+    public function single(Request $request, $id) {
+        $model = $this->modelClass::findOrFail( intval($id) );
+
+        //return view('admin.'.$this->modelSlug.'.single');
+        return view('admin.layouts.single')
+            ->with('modelSlug', $this->modelSlug)
+            ->with('model', $model);
     }
 
-    // POST /admin/{model_slug}/create
+    // GET /admin/{modelSlug}/new
+    public function new(Request $request) {
+        return view('admin.'.$this->modelSlug.'.new');
+    }
+
+    // POST /admin/{modelSlug}/create
     public function create(Request $request) {
-        return view('admin.'.$this->model_slug.'.create');
+        return view('admin.'.$this->modelSlug.'.create');
         //return redirect('');
     }
 
 
-    // POST /admin/{model_slug}/update
+    // POST /admin/{modelSlug}/update
     public function update(Request $request) {
 
     }
 
-    // DELETE /admin/{model_slug}/delete
+    // DELETE /admin/{modelSlug}/delete
     public function delete(Request $request) {
         //return redirect('');
     }
-
-    /**
-     * @return array
-     * @description Headers for the table in a child controller's list view.
-     */
-    public static function getTableHeaders() {
-        return array(
-            'id'            => 'ID',
-            'name'          => 'Name',
-            'created_at'    => 'Created',
-        );
-    }
 }
+
+
+
+/*
+    // GET /admin/apps
+    public function list(Request $request) {
+        $view = parent::list($request);
+
+        return $view;
+    }
+
+    // GET /admin/apps/{id}
+    public function single(Request $request) {
+        $view = parent::single($request);
+
+        return $view;
+    }
+
+    // GET /admin/apps/new
+    public function new(Request $request) {
+        $view = parent::new($request);
+
+        return $view;
+    }
+
+    // POST /admin/apps/create
+    public function create(Request $request) {
+        $view = parent::create($request);
+
+        return $view;
+    }
+
+    // POST /admin/apps/update
+    public function update(Request $request) {
+        $view = parent::update($request);
+
+        return $view;
+    }
+
+    // DELETE /admin/apps/delete
+    public function delete(Request $request) {
+        $view = parent::delete($request);
+
+        return $view;
+    }
+    */
