@@ -26,8 +26,93 @@
 // Transition Times
 $sidebar-transition: 150ms;
 
+
+/* old colors
+$brand-primary: #fefefe;
+$brand-secondary: #3c3c3c;
+$brand-info: #428bc0;
+$brand-danger: #b34221;
+$state-success-text:  #5ea85f;
+$state-info-text:     #469ac1;
+$state-warning-text:  #bc9948;
+$state-danger-text:   #e55250;
+*/
+
+// Colors
+$white:    #fff;
+$gray-100: #e6e6e6;
+$gray-200: #cdcdcd;
+$gray-300: #b4b4b4;
+$gray-400: #a4a4a4;
+$gray-500: #888888;
+$gray-600: #696969;
+$gray-700: #434343;
+$gray-800: #2f2f2f;
+$gray-900: #212121;
+$black:    #000;
+
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+);
+
+$blue:    #428bc0;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #e83e8c;
+$red:     #b34221;
+$orange:  #fd7e14;
+$yellow:  #cbc326;
+$green:   #2ab27b;
+$teal:    #20c997;
+$cyan:    #17a2b8;
+
+$colors: (
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+);
+
+$primary:       $blue;
+$secondary:     $gray-800;
+$success:       $green;
+$info:          $cyan;
+$warning:       $yellow;
+$danger:        $red;
+$light:         $gray-100;
+$dark:          $gray-800;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
 // Body
-$body-bg: #696969;
+$body-bg:                   $gray-600;
+$body-color:                $gray-200;
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -35,26 +120,6 @@ $list-group-border: $laravel-border-color;
 $navbar-default-border: $laravel-border-color;
 $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
-
-// Brands
-$brand-primary: #fefefe;
-$brand-secondary: #3c3c3c;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
-
-// Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 14px;
-$line-height-base: 1.6;
-
-$text-color:          #ffffff;
-$state-success-text:  #5ea85f;
-$state-info-text:     #469ac1;
-$state-warning-text:  #bc9948;
-$state-danger-text:   #e55250;
 
 // Navbar
 $navbar-default-bg: #3c3c3c;
@@ -67,14 +132,14 @@ $sidebar-bg-active: lighten($sidebar-bg, 25%);
 $sidebar-border: darken($sidebar-bg, 25%);
 
 // Buttons
-$btn-primary-bg: $brand-secondary;
-$btn-default-color: $brand-secondary;
+$btn-primary-bg: $secondary;
+$btn-default-color: $secondary;
 
 
 // Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
+$input-border: lighten($body-color, 40%);
+$input-border-focus: lighten($primary, 25%);
+$input-color-placeholder: lighten($body-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #3c3c3c;

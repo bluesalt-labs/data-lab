@@ -62,7 +62,11 @@
                 <div class="col-sm-3 col-xs-6">
                     <select class="form-control" id="new-role">
                         <option selected>Add Role...</option>
-                        @foreach(Role::)
+                        {{--
+                        @foreach()
+
+                        @endforeach
+                        --}}
                     </select>
                 </div>
                 <div class="col-sm-1 col-xs-6">
