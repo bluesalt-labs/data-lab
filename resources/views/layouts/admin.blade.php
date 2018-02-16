@@ -5,39 +5,37 @@
 @section('base-content')
     <div id="page-container" class="sidebar-active">
         <!-- Admin Navbar -->
-        <nav id="main-navbar">
-            <button id="btn-nav-toggle" onclick="onNavBtnClick();">
-                <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
-            </button>
+        <nav class="navbar navbar-expand-lg" id="main-navbar">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name') }}
             </a>
+            <a id="btn-nav-toggle" class="nav-item mr-auto" onclick="onNavBtnClick();">
+                <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+            </a>
 
-            <!-- todo: fix this thing. styling is crap and it shouldn't use bootstrap navbar stuff -->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="userDropdown" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                             {{ Auth::user()->fullName() }} <span class="caret"></span>
                         </a>
 
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="    event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a href="{{ route('logout') }}"
+                               class="dropdown-item"
+                               onclick="    event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </li>
                 @endguest
             </ul>

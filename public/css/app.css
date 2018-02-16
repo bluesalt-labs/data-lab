@@ -13079,7 +13079,7 @@ body,
   left: 0;
 }
 
-#page-container.sidebar-active #main-sidebar #btn-nav-toggle > i:before {
+#page-container.sidebar-active #btn-nav-toggle > i:before {
   content: "\F191";
 }
 
@@ -13094,7 +13094,7 @@ body,
   left: 0;
   width: 100%;
   height: 40px;
-  padding: 0 15px;
+  padding: 0px;
   margin: 0;
   background: #3c3c3c;
 }
@@ -13103,10 +13103,33 @@ body,
 #main-navbar .navbar-brand {
   display: inline-block;
   color: #fff;
-  background: #3c3c3c;
   vertical-align: middle;
   height: 40px;
-  margin: 0 5px;
+  margin: 0px;
+}
+
+#main-navbar a {
+  color: #cdcdcd;
+  background: transparent;
+}
+
+#main-navbar a:active,
+#main-navbar a:hover,
+#main-navbar a:focus {
+  color: #fff;
+  background: #b3b3b3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#main-navbar .navbar-brand {
+  width: 210px;
+}
+
+#main-navbar .navbar-brand,
+#main-navbar #userDropdown {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #main-navbar #btn-nav-toggle {
@@ -13122,6 +13145,7 @@ body,
 }
 
 #main-navbar #btn-nav-toggle i {
+  background: transparent;
   position: absolute;
   top: 0;
   left: 0;
@@ -13133,6 +13157,24 @@ body,
 
 #main-navbar #btn-nav-toggle i:before {
   content: "\F152";
+}
+
+#main-navbar .dropdown-menu {
+  background-color: #737373;
+  margin-top: 0px;
+  border-top: 0px;
+  left: -1px;
+  -webkit-border-top-left-radius: 1 0px;
+  -webkit-border-top-right-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+#main-navbar .dropdown-item {
+  height: 40px;
+  vertical-align: middle;
 }
 
 #main-sidebar {
@@ -13160,7 +13202,6 @@ body,
 
 #main-sidebar #sidebar-links {
   border-right: 1px solid #333333;
-  /*padding-top: 15px;*/
 }
 
 #main-sidebar #sidebar-links li {
@@ -13181,7 +13222,8 @@ body,
 }
 
 #main-sidebar #sidebar-links li a:active,
-#main-sidebar #sidebar-links li a:hover {
+#main-sidebar #sidebar-links li a:hover,
+#main-sidebar #sidebar-links li a:focus {
   background: #b3b3b3;
   text-decoration: none;
   cursor: pointer;
