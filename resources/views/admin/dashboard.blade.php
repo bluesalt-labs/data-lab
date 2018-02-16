@@ -28,7 +28,9 @@
 
             <div class="passport-components">
                 <passport-clients></passport-clients>
+                <hr />
                 <passport-authorized-clients></passport-authorized-clients>
+                <hr />
                 <passport-personal-access-tokens></passport-personal-access-tokens>
             </div>
         </div>

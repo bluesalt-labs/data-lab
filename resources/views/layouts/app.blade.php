@@ -1,80 +1,102 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.base')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('base-content')
+    <div id="page-container" class="sidebar-active">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg" id="main-navbar">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                {{ config('app.name') }}
+            </a>
+            <a id="btn-nav-toggle" class="nav-item mr-auto" onclick="onNavBtnClick();">
+                <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+            </a>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+            <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                @guest
+                    <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a href="{{ route('register') }}">Register</a></li>
+                @else
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="userDropdown" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                            {{ Auth::user()->fullName() }} <span class="caret"></span>
+                        </a>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a href="{{ route('dashboard') }}"
+                               class="dropdown-item">Dashboard</a>
+                            <a href="{{ route('logout') }}"
+                               class="dropdown-item"
+                               onclick="    event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->fullName() }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
         </nav>
 
-        @yield('content')
-    </div>
+        <header id="main-sidebar">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
-</html>
+        </header>
+        <!-- Sidebar -->
+        <header id="main-sidebar">
+            <ul id="sidebar-links">
+            @foreach(Request::get('sidebarRoutes') as $routeName => $routeTitle)
+                @if(Route::currentRouteName() === $routeName) <!-- todo: fix this for sub-routes -->
+                    <li class="active"><span>{{ $routeTitle }}</span></li>
+                    @else
+                        <li><a href="{{ route($routeName) }}">{!! $routeTitle !!}</a></li>
+                    @endif
+                @endforeach
+            </ul>
+        </header>
+
+        <!-- Page Content -->
+        <div id="page-content">
+            @yield('page-content')
+        </div><!-- #page-content -->
+
+        <footer id="page-footer">
+            @yield('page-footer')
+        </footer><!-- #page-footer -->
+    </div>
+@endsection
+
+@section('base-scripts')
+    <script type="text/javascript">
+        function onNavBtnClick() {
+            var pgDiv = document.getElementById('page-container');
+            pgDiv.className = (pgDiv.className === 'sidebar-active') ? '' : 'sidebar-active';
+        }
+
+        function checkCloseSidebar() {
+            var width = ( (document.body.clientWidth || window.innerWidth) + 15 ) || 0;
+
+            if(width > 0 && width < 768) {
+                document.getElementById('page-container').className = '';
+            }
+        }
+
+        function addEvent(object, type, callback) {
+            if (object == null || typeof(object) === 'undefined') return;
+            if (object.addEventListener) {
+                object.addEventListener(type, callback, false);
+            } else if (object.attachEvent) {
+                object.attachEvent("on" + type, callback);
+            } else {
+                object["on"+type] = callback;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            addEvent(window, "resize", checkCloseSidebar);
+            checkCloseSidebar();
+        });
+    </script>
+@endsection

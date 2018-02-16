@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AdminSidebar;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -58,6 +57,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'sidebar.admin' => \App\Http\Middleware\AdminSidebar::class
+        'sidebar.admin' => \App\Http\Middleware\AdminSidebar::class,
+        'sidebar.docs' => \App\Http\Middleware\DocsSidebar::class,
     ];
 }

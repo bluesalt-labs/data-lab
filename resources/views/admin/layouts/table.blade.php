@@ -29,7 +29,7 @@
         @endforeach
         @if($editButton['enabled'])
         <td>
-            <a  type="button" class="{{ $editButton['class'] }}"
+            <a  role="button" class="{{ $editButton['class'] }}"
                 href="{{ route($modelSlug.'_view', [ 'id' => $rowValues['id'] ]) }}">
                 Edit
             </a>

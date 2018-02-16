@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('page-title', 'Role {name}')
+@section('page-title', 'Role: '.$model->name)
 
 @section('page-content')
     {{--
@@ -17,7 +17,7 @@
             <input type="hidden" name="id" value="{{ $model->id }}" />
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6 col-8">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" value="{{ $model->name }}" />
@@ -33,26 +33,33 @@
 
             <h3>Permissions</h3>
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-md-6 col-8">
                     <label for="permissions[]">Permission</label>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-2">
                     <label for="permissions[]">Has Access?</label>
                 </div>
-                <div class="col-xs-4"></div>
+                <div class="col-2"></div>
             </div>
-            @foreach($model->permissions as $key => $val) <!-- todo: vue?-->
+            @foreach($model->permissions as $key => $val)
                 <div class="row">
-                    <div class="form-group col-xs-6">
+                    <div class="form-group col-md-6 col-8">
                         <input type="text" class="form-control" name="permissions[]" value="{{ $key }}" />
                     </div>
-                    <div class="form-group col-xs-2">
-                        <input type="checkbox" class="form-control" id="permissions[]" @if($val === true) checked value="true" @endif />
+                    <div class="form-group col-2">
+                        <span class="switch">
+                            <input type="checkbox"
+                                   class="switch"
+                                   id="permissions[]"
+                                   @if($val === true) checked value="true" @endif
+                                   @if(Auth::user()->role === 'system_admin') disabled @endif>
+                            <label for="permissions[]">{{ Auth::user()->role }}</label>
+                        </span>
                     </div>
-                    <div class="col-xs-4">
-                        <button onclick="" class="btn btn-danger">
+                    <div class="col-2">
+                        <a href="#" role="button" onclick="" class="btn btn-danger">
                             <i class="fa fa-trash"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             @endforeach

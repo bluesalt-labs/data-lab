@@ -26,7 +26,7 @@ Auth::routes();
 
 
 
-Route::group(['prefix' => 'docs'], function () {
+Route::prefix('docs')->middleware('sidebar.docs')->group(function () {
     Route::get('/', 'DocsController@index')->name('docs_home');
 });
 

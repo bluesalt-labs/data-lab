@@ -47795,8 +47795,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "panel panel-default" }, [
-      _c("div", { staticClass: "panel-heading" }, [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
         _c(
           "div",
           {
@@ -47827,7 +47827,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "panel-body" }, [
+      _c("div", { staticClass: "card-body" }, [
         _vm.clients.length === 0
           ? _c("p", { staticClass: "m-b-none" }, [
               _vm._v(
@@ -48559,12 +48559,12 @@ var render = function() {
   return _c("div", [
     _vm.tokens.length > 0
       ? _c("div", [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
               _vm._v("Authorized Applications")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "card-body" }, [
               _c("table", { staticClass: "table table-borderless m-b-none" }, [
                 _vm._m(0),
                 _vm._v(" "),
@@ -49084,8 +49084,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", [
-      _c("div", { staticClass: "panel panel-default" }, [
-        _c("div", { staticClass: "panel-heading" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
           _c(
             "div",
             {
@@ -49118,7 +49118,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "panel-body" }, [
+        _c("div", { staticClass: "card-body" }, [
           _vm.tokens.length === 0
             ? _c("p", { staticClass: "m-b-none" }, [
                 _vm._v(

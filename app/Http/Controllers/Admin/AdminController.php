@@ -43,7 +43,7 @@ class AdminController extends Controller
             'editButton'    => [
                 'enabled'       => true,
                 'content'       => 'Edit',
-                'class'         => 'btn btn-info',
+                'class'         => 'btn btn-outline-info',
             ],
         ];
     }

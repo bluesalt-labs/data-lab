@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.docs')
 
-@section('content')
+@section('page-content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Docs Home</div>
+                    <h1 class="panel-heading">Docs Home</h1>
 
                     <div class="panel-body">
                         @if (session('status'))

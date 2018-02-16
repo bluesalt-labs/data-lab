@@ -1,7 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: luke
- * Date: 2/6/18
- * Time: 4:28 PM
- */
+@extends('layouts.app')
+
+@section('base-title') Docs - @yield('page-title') @endsection

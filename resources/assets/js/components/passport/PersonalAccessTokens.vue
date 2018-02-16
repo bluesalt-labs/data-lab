@@ -11,8 +11,8 @@
 <template>
     <div>
         <div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span>
                             Personal Access Tokens
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <!-- No Tokens Notice -->
                     <p class="m-b-none" v-if="tokens.length === 0">
                         You have not created any personal access tokens.
